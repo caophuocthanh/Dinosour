@@ -16,19 +16,29 @@ public class RealmDB {
                                                              attributes: [],
                                                              autoreleaseFrequency: .inherit,
                                                              target: nil)
+    
+    internal static var url: URL {
+       let documentDirectory = try! FileManager.default.url(for: .documentDirectory,
+                                                            in: .userDomainMask,
+                                                            appropriateFor: nil,
+                                                            create: false)
+       let url = documentDirectory.appendingPathComponent("database.realm")
+        return url
+    }
+    
     internal static let config: Realm.Configuration = Realm.Configuration(
-        fileURL: Bundle.main.url(forResource: "database", withExtension: "realm"),
+        fileURL: RealmDB.url,
         readOnly: true
     )
     
-    internal static let realm: Realm = try! Realm(configuration: RealmDB.config)
+    internal static let realm: Realm = try! Realm()
     
     /**
      Add object(ZModel) to store
      
      - parameter model: object (ZModel)
      */
-    public static func set(_ model: Model, update: RealmDB.SetType = .all) throws {
+    public static func set(_ model: Model, update: RealmDB.SetType = .modified) throws {
         try write {
             realm.add(model, update: .all)
         }
@@ -62,7 +72,7 @@ public class RealmDB {
      - returns: Object (ZModel)
      */
     public static func get<T: Model>(_ id: String) -> T? {
-        if let model:T = realm.objects(T.self).filter("id == \(id)").sorted(byKeyPath: "created_at", ascending: false).first {
+        if let model:T = realm.objects(T.self).filter("id = '\(id)'").first {
             return  model
         }
         return nil

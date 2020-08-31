@@ -21,6 +21,9 @@
 		7336355424FD67E5002C84DA /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355124FD67E5002C84DA /* RealmSwift.framework */; };
 		7336355624FD6802002C84DA /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355524FD6802002C84DA /* Alamofire.framework */; };
 		7336355824FD6839002C84DA /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355724FD6839002C84DA /* Realm.framework */; };
+		7336355A24FD77E3002C84DA /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355724FD6839002C84DA /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7336355B24FD77E3002C84DA /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355524FD6802002C84DA /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7336355C24FD77E3002C84DA /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355124FD67E5002C84DA /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				7336355A24FD77E3002C84DA /* Realm.framework in Embed Frameworks */,
+				7336355B24FD77E3002C84DA /* Alamofire.framework in Embed Frameworks */,
+				7336355C24FD77E3002C84DA /* RealmSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;

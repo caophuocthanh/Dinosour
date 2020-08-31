@@ -20,9 +20,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let model: Model = Model(id: "123123")
+        let model: Model = Model(id: "allo")
         try? RealmDB.set(model)
-        let amodel: Model? = RealmDB.get("123123")
+        let amodel: Model? = RealmDB.get("allo")
         print("model:", model.id)
         print("amodel:", amodel?.id)
     }

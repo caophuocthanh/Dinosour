@@ -16,4 +16,8 @@ public class Model: Object {
         self.init()
         self.id = id
     }
+    
+    public override class func primaryKey() -> String? {
+        return "id"
+    }
 }
