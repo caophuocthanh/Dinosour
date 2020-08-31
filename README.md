@@ -3,7 +3,7 @@
 
 # Use:
 
-### Comand build DataMine.framework
+### Command build DataMine.framework and open folder Build after build done
 
 ```shell
 
