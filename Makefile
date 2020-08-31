@@ -20,10 +20,10 @@ setup:
 	#build
 	carthage update --platform iOS;
 	
+	rm -rf Carthage/Build/iOS/*bcsymbolmap;
+
 	#copy libary to Frameworks
-	cp -rf Carthage/Build/iOS/Alamofire.framework Frameworks/;
-	cp -rf Carthage/Build/iOS/RealmSwift.framework Frameworks/;
-	cp -rf Carthage/Build/iOS/Realm.framework Frameworks/;
+	cp -rf Carthage/Build/iOS/* Frameworks/;
 	
 	#clean Carthage
 	rm -rf Carthage;
@@ -57,7 +57,5 @@ clean:
 	rm -rf ${BUILD_PATH};
 	rm -rf Carthage;
 	rm -rf Cartfile.resolved;
-	rm -rf Frameworks/RealmSwift.framework;
-	rm -rf Frameworks/Realm.framework;
-	rm -rf Frameworks/Alamofire.framework;
+	rm -rf Frameworks/*;
 	rm -rf ${PROJECT}.framework
