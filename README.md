@@ -3,6 +3,16 @@
 
 # Use:
 
+### Comand build DataMine.framework
+
+```shell
+
+make setup && make build
+
+````
+
+------------------------
+
 ### Setup code
 ```shell
 
@@ -22,5 +32,8 @@ make build
 
 make clean
 
-```
+``` 
+
+## Refactor code from source: 
+- https://github.com/caophuocthanh/RealmSwift-Alamofire
 
