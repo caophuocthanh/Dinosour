@@ -27,6 +27,13 @@ make build
 
 ```
 
+### Test
+```shell
+
+make test
+
+``` 
+
 ### Clean
 ```shell
 

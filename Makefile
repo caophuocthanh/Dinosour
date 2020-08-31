@@ -4,7 +4,7 @@ PROJECT=DataMine
 SCHEME=DataMine
 BUILD_PATH=Build
 
-.PHONY: build setup clean
+.PHONY: build setup clean test
 
 setup:
 	
@@ -46,6 +46,12 @@ build:
 	
 	#open folder build
 	open ${BUILD_PATH}
+
+test:
+	xcodebuild build-for-testing \
+  	-project ${PROJECT}.xcodeproj \
+  	-scheme ${SCHEME} \
+  	-destination 'platform=iOS Simulator,name=iPhone 8,OS=13.6'
 
 clean:
 	rm -rf ${BUILD_PATH};
