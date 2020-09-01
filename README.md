@@ -1,8 +1,6 @@
 # DataMine 
----
-**NOTE**
-(In Developing... It's not ready for use)
----
+<span style="color:orange;">(In Developing... It's not ready for use)</span>
+
 
 ### Network and Database in ONE
 
