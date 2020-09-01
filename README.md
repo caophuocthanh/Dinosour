@@ -15,7 +15,7 @@ make setup && make build
 ------------------------
 
 ### Setup code
-- Incude 2 framework:
+Incude 2 framework:
 1. Alamofire
 2. RealmSwift
 
