@@ -1,6 +1,7 @@
 # DataMine
 ### Network and Database in ONE
 
+
 # Use:
 
 ### Command build DataMine.framework and open folder Build after build done
@@ -14,6 +15,12 @@ make setup && make build
 ------------------------
 
 ### Setup code
+- Incude 2 framework:
+1. Alamofire
+2. RealmSwift
+
+Run this command to get those frameworks from git to this project before run build or test
+
 ```shell
 
 make setup
