@@ -1,5 +1,6 @@
 # DataMine 
-<p style='color:red'>(In Developing... It's not ready for use)</p>
+<p style='color:red'>In Developing... It's not ready for use</p>
+
 
 
 ### Network and Database in ONE
