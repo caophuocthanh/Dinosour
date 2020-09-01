@@ -1,4 +1,6 @@
-# DataMine
+# DataMine 
+(In Developing... It's not ready for use)
+
 ### Network and Database in ONE
 
 
@@ -50,4 +52,9 @@ make clean
 
 ## Refactor code from source: 
 - https://github.com/caophuocthanh/RealmSwift-Alamofire
+
+## Contact
+- Email: caophuocthanh@gmail.com
+- Site: https://onebuffer.com
+- Linkedin: https://www.linkedin.com/in/caophuocthanh/
 
