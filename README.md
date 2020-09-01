@@ -1,5 +1,8 @@
-# DataMine 
-<p style='color:red'>In Developing... It's not ready for use</p>
+# DataMine
+---
+**NOTE**
+(In Developing... It's not ready for use)
+---
 
 
 
