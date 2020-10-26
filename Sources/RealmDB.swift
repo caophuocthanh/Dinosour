@@ -11,27 +11,23 @@ public class RealmDB {
     }
     
     /// new realm
-    internal static let queue: DispatchQueue = DispatchQueue(label: "RealmDB",
-                                                             qos: .default,
-                                                             attributes: [],
-                                                             autoreleaseFrequency: .inherit,
-                                                             target: nil)
     
     internal static var url: URL {
-       let documentDirectory = try! FileManager.default.url(for: .documentDirectory,
-                                                            in: .userDomainMask,
-                                                            appropriateFor: nil,
-                                                            create: false)
-       let url = documentDirectory.appendingPathComponent("database.realm")
+        let documentDirectory = try! FileManager.default.url(for: .documentDirectory,
+                                                             in: .userDomainMask,
+                                                             appropriateFor: nil,
+                                                             create: false)
+        let url = documentDirectory.appendingPathComponent("database.realm")
+        print("RealmDB.url:", url.absoluteString )
         return url
     }
     
     internal static let config: Realm.Configuration = Realm.Configuration(
         fileURL: RealmDB.url,
-        readOnly: true
+        readOnly: false
     )
     
-    internal static let realm: Realm = try! Realm()
+    internal static let realm: Realm = try! Realm(configuration: config)
     
     /**
      Add object(ZModel) to store
@@ -86,9 +82,9 @@ public class RealmDB {
      - throws:
      */
     internal static func write(_ block: (() throws -> Void)) throws {
-        realm.beginWrite()
+        RealmDB.realm.beginWrite()
         try block()
-        try realm.commitWrite()
+        try RealmDB.realm.commitWrite()
     }
     
     /**

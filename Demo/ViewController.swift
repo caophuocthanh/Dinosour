@@ -21,10 +21,21 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let model: Model = Model(id: "allo")
-        try? RealmDB.set(model)
+        
+         print("model:", model.id)
+        
+        try? model.stored()
         let amodel: Model? = RealmDB.get("allo")
         print("model:", model.id)
-        print("amodel:", amodel?.id)
+        print(" saved amodel:", amodel?.id ?? "nil")
+        
+        try? model.removed()
+        
+        if !model.isInvalidated {
+            print("removed amodel:", amodel?.id ?? "nil")
+        } else {
+            print("asdasdasd amodel nil")
+        }
     }
 
 
