@@ -1,6 +1,7 @@
 Build
 Carthage
 Cartfile.resolved
+Frameworks/*
 
 #####
 # OS X temporary files that should never be committed
