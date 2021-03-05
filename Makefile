@@ -9,18 +9,31 @@ TEST_DEVICE_DESTINATION='platform=iOS Simulator,name=iPhone 8,OS=13.6'
 BUILD_PATH=Build
 FRAMEWORK_DESTINATION=Frameworks
 
+CARTHAGE_BUILD_PATH=./carthage-build.sh
+
 .PHONY: build setup clean test
 
 setup:
+
+	set -e;
+
+	# fix homebrew
+	#sudo chown -R $(whoami) $(brew --prefix)/*;
+
 	#install carthage
-	brew install carthage;
+	#brew cleanup -d -v;
+	#brew reinstall carthage;
+	
+	# chmod +x ${CARTHAGE_BUILD_PATH}
+	chmod +x ${CARTHAGE_BUILD_PATH};
 
 	# remove old setup and build if existed in project
 	rm -rf ${BUILD_PATH};
 	rm -rf Frameworks/*;
+	rm -rf ./cconfig;
 
 	#build
-	carthage update --platform iOS;
+	${CARTHAGE_BUILD_PATH} update --platform iOS --no-use-binaries;
 	
 	rm -rf Carthage/Build/iOS/*bcsymbolmap;
 
@@ -37,13 +50,22 @@ build:
 	mkdir ${BUILD_PATH};
 	
 	# build
-	xcodebuild \
-	-project ${PROJECT}.xcodeproj \
-	-scheme ${SCHEME} \
-	-configuration ${BUILD_CONFIGURATION} \
-	-sdk iphoneos \
-	CONFIGURATION_BUILD_DIR=${BUILD_PATH} \
-	clean build;
+	
+	xcodebuild -target ${SCHEME} -project ${PROJECT}.xcodeproj -configuration Release -arch arm64 -arch armv7 -arch armv7s only_active_arch=no defines_module=yes -sdk "iphoneos";
+	xcodebuild -target ${SCHEME} -project ${PROJECT}.xcodeproj -configuration Release -arch x86_64 -arch i386 only_active_arch=no defines_module=yes -sdk "iphonesimulator";
+ 
+ 
+ 	# build
+	lipo -create -output "${FRAMEWORK_DESTINATION}/${PROJECT}.framework/${PROJECT}" "${SRCROOT}/build/Release-iphoneos/${PROJECT}.framework/${FRAMEWORK_NAME}" "${SRCROOT}/build/Release-iphonesimulator/${PROJECT}.framework/${PROJECT}";
+	
+#	xcodebuild \
+#	-project ${PROJECT}.xcodeproj \
+#	-scheme ${SCHEME} \
+#	-configuration ${BUILD_CONFIGURATION} \
+#	-sdk iphoneos \
+#	CONFIGURATION_BUILD_DIR=${BUILD_PATH} \
+#	SKIP_INSTALL=NO \
+#	clean build;
 	
 	#open folder build
 	open ${BUILD_PATH};
