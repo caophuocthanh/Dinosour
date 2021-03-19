@@ -32,7 +32,6 @@ internal extension Storage {
     
     func object<T: Element>(id: Int) -> T? {
         let result = self.realm.objects(T.self)
-        print("object:", Thread.current, T.self, id, result)
         return result.filter("id == \(id)").first
     }
     

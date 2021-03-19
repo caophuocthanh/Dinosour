@@ -37,12 +37,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let create: Person = Person(id: 10, name: "KSJGFLKHJSGF")
-
         try! create.save()
         
         let abc: Person? = Person.object(10)
 
-        create.changed { (e: Person?, c) in
+        abc?.changed { (e: Person?, c) in
             print("🍎🍎🍎🍎🍎: change", c, e?.name)
         }
 
@@ -62,12 +61,10 @@ class ViewController: UIViewController {
                     try? model.write {
                         model.name = "10000_\(i)"
                     }
-                    
                     try? model.save()
                 }
+                
                 print("modelaa:", model.id)
-                
-                
                 try? model.delete()
                 
             } else {
