@@ -1,7 +1,7 @@
 #!/bin/sh
 
 PROJECT=DataMine
-SCHEME=DataMine
+TARGET=Storage
 
 BUILD_CONFIGURATION=Release
 TEST_DEVICE_DESTINATION='platform=iOS Simulator,name=iPhone 8,OS=13.6'
@@ -51,21 +51,13 @@ build:
 	
 	# build
 	
-	xcodebuild -target ${SCHEME} -project ${PROJECT}.xcodeproj -configuration Release -arch arm64 -arch armv7 -arch armv7s only_active_arch=no defines_module=yes -sdk "iphoneos";
-	xcodebuild -target ${SCHEME} -project ${PROJECT}.xcodeproj -configuration Release -arch x86_64 -arch i386 only_active_arch=no defines_module=yes -sdk "iphonesimulator";
+	xcodebuild -target ${TARGET} -project ${PROJECT}.xcodeproj -configuration ${BUILD_CONFIGURATION} -arch x86_64 -arch arm64 -arch i386 -arch armv7 -arch armv7s only_active_arch=no defines_module=yes -sdk "iphoneos";
+	xcodebuild -target ${TARGET} -project ${PROJECT}.xcodeproj -configuration ${BUILD_CONFIGURATION} -arch x86_64 -arch i386 only_active_arch=no defines_module=yes -sdk "iphonesimulator";
  
  
- 	# build
+ 	# lipo
 	lipo -create -output "${FRAMEWORK_DESTINATION}/${PROJECT}.framework/${PROJECT}" "${SRCROOT}/build/Release-iphoneos/${PROJECT}.framework/${FRAMEWORK_NAME}" "${SRCROOT}/build/Release-iphonesimulator/${PROJECT}.framework/${PROJECT}";
-	
-#	xcodebuild \
-#	-project ${PROJECT}.xcodeproj \
-#	-scheme ${SCHEME} \
-#	-configuration ${BUILD_CONFIGURATION} \
-#	-sdk iphoneos \
-#	CONFIGURATION_BUILD_DIR=${BUILD_PATH} \
-#	SKIP_INSTALL=NO \
-#	clean build;
+
 	
 	#open folder build
 	open ${BUILD_PATH};
@@ -73,7 +65,7 @@ build:
 test:
 	xcodebuild build-for-testing \
   	-project ${PROJECT}.xcodeproj \
-  	-scheme ${SCHEME} \
+  	-scheme ${TARGET} \
   	-destination ${TEST_DEVICE_DESTINATION};
 
 clean:

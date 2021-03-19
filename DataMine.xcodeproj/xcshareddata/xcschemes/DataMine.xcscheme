@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "733634E224FD50C1002C84DA"
-               BuildableName = "DataMine.framework"
-               BlueprintName = "DataMine"
+               BuildableName = "Storage.framework"
+               BlueprintName = "Storage"
                ReferencedContainer = "container:DataMine.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -61,8 +61,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "733634E224FD50C1002C84DA"
-            BuildableName = "DataMine.framework"
-            BlueprintName = "DataMine"
+            BuildableName = "Storage.framework"
+            BlueprintName = "Storage"
             ReferencedContainer = "container:DataMine.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

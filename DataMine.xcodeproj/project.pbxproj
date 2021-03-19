@@ -7,23 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		733634ED24FD50C1002C84DA /* DataMine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733634E324FD50C1002C84DA /* DataMine.framework */; };
+		733634ED24FD50C1002C84DA /* Storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733634E324FD50C1002C84DA /* Storage.framework */; };
 		733634F224FD50C1002C84DA /* DataMineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733634F124FD50C1002C84DA /* DataMineTests.swift */; };
 		733634F424FD50C1002C84DA /* DataMine.h in Headers */ = {isa = PBXBuildFile; fileRef = 733634E624FD50C1002C84DA /* DataMine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7336351524FD5DDA002C84DA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7336351324FD5DD5002C84DA /* Model.swift */; };
-		7336351624FD5DDA002C84DA /* RealmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7336351424FD5DDA002C84DA /* RealmDB.swift */; };
+		7336351624FD5DDA002C84DA /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7336351424FD5DDA002C84DA /* Storage.swift */; };
 		7336352024FD62A8002C84DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7336351F24FD62A8002C84DA /* AppDelegate.swift */; };
 		7336352424FD62A8002C84DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7336352324FD62A8002C84DA /* ViewController.swift */; };
 		7336352924FD62AB002C84DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7336352824FD62AB002C84DA /* Assets.xcassets */; };
 		7336352C24FD62AB002C84DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7336352A24FD62AB002C84DA /* LaunchScreen.storyboard */; };
 		7336353724FD62AB002C84DA /* DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7336353624FD62AB002C84DA /* DemoTests.swift */; };
 		7336354224FD62AC002C84DA /* DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7336354124FD62AC002C84DA /* DemoUITests.swift */; };
-		736E117125F1D5F400789D67 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355524FD6802002C84DA /* Alamofire.framework */; };
-		736E117225F1D5F400789D67 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355524FD6802002C84DA /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		736E117425F1D5F600789D67 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355724FD6839002C84DA /* Realm.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		736E117525F1D5F600789D67 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355724FD6839002C84DA /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		736E117A25F1D5F800789D67 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355124FD67E5002C84DA /* RealmSwift.framework */; };
-		736E117B25F1D5F800789D67 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355124FD67E5002C84DA /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		73432C7525F75B6900BA8451 /* Storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733634E324FD50C1002C84DA /* Storage.framework */; };
+		736E11F025F2084E00789D67 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355524FD6802002C84DA /* Alamofire.framework */; };
+		736E11F125F2084E00789D67 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355524FD6802002C84DA /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		736E11F325F2085000789D67 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355724FD6839002C84DA /* Realm.framework */; };
+		736E11F425F2085000789D67 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355724FD6839002C84DA /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		736E11F525F2085100789D67 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355124FD67E5002C84DA /* RealmSwift.framework */; };
+		736E11F625F2085100789D67 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355124FD67E5002C84DA /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		73EB42662602E970003583DE /* Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EB42652602E970003583DE /* Save.swift */; };
+		73EB426C2602E9AB003583DE /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EB426B2602E9AB003583DE /* Delete.swift */; };
+		73EB42722602EA11003583DE /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EB42712602EA11003583DE /* Query.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,15 +62,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		736E117325F1D5F400789D67 /* Embed Frameworks */ = {
+		736E11F225F2084E00789D67 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				736E117525F1D5F600789D67 /* Realm.framework in Embed Frameworks */,
-				736E117225F1D5F400789D67 /* Alamofire.framework in Embed Frameworks */,
-				736E117B25F1D5F800789D67 /* RealmSwift.framework in Embed Frameworks */,
+				736E11F425F2085000789D67 /* Realm.framework in Embed Frameworks */,
+				736E11F125F2084E00789D67 /* Alamofire.framework in Embed Frameworks */,
+				736E11F625F2085100789D67 /* RealmSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,14 +78,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		733634E324FD50C1002C84DA /* DataMine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataMine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		733634E324FD50C1002C84DA /* Storage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Storage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		733634E624FD50C1002C84DA /* DataMine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataMine.h; sourceTree = "<group>"; };
 		733634E724FD50C1002C84DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		733634EC24FD50C1002C84DA /* DataMineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataMineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		733634F124FD50C1002C84DA /* DataMineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMineTests.swift; sourceTree = "<group>"; };
 		733634F324FD50C1002C84DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7336351324FD5DD5002C84DA /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		7336351424FD5DDA002C84DA /* RealmDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDB.swift; sourceTree = "<group>"; };
+		7336351424FD5DDA002C84DA /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		7336351D24FD62A8002C84DA /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7336351F24FD62A8002C84DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7336352324FD62A8002C84DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +101,9 @@
 		7336355124FD67E5002C84DA /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		7336355524FD6802002C84DA /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alamofire.framework; sourceTree = "<group>"; };
 		7336355724FD6839002C84DA /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		73EB42652602E970003583DE /* Save.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Save.swift; sourceTree = "<group>"; };
+		73EB426B2602E9AB003583DE /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
+		73EB42712602EA11003583DE /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,9 +111,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				736E117425F1D5F600789D67 /* Realm.framework in Frameworks */,
-				736E117125F1D5F400789D67 /* Alamofire.framework in Frameworks */,
-				736E117A25F1D5F800789D67 /* RealmSwift.framework in Frameworks */,
+				736E11F325F2085000789D67 /* Realm.framework in Frameworks */,
+				736E11F025F2084E00789D67 /* Alamofire.framework in Frameworks */,
+				736E11F525F2085100789D67 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				733634ED24FD50C1002C84DA /* DataMine.framework in Frameworks */,
+				733634ED24FD50C1002C84DA /* Storage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73432C7525F75B6900BA8451 /* Storage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,7 +167,7 @@
 		733634E424FD50C1002C84DA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				733634E324FD50C1002C84DA /* DataMine.framework */,
+				733634E324FD50C1002C84DA /* Storage.framework */,
 				733634EC24FD50C1002C84DA /* DataMineTests.xctest */,
 				7336351D24FD62A8002C84DA /* Demo.app */,
 				7336353224FD62AB002C84DA /* DemoTests.xctest */,
@@ -200,7 +208,10 @@
 			isa = PBXGroup;
 			children = (
 				7336351324FD5DD5002C84DA /* Model.swift */,
-				7336351424FD5DDA002C84DA /* RealmDB.swift */,
+				7336351424FD5DDA002C84DA /* Storage.swift */,
+				73EB42652602E970003583DE /* Save.swift */,
+				73EB426B2602E9AB003583DE /* Delete.swift */,
+				73EB42712602EA11003583DE /* Query.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -249,25 +260,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		733634E224FD50C1002C84DA /* DataMine */ = {
+		733634E224FD50C1002C84DA /* Storage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 733634F724FD50C1002C84DA /* Build configuration list for PBXNativeTarget "DataMine" */;
+			buildConfigurationList = 733634F724FD50C1002C84DA /* Build configuration list for PBXNativeTarget "Storage" */;
 			buildPhases = (
 				733634DE24FD50C1002C84DA /* Headers */,
 				733634DF24FD50C1002C84DA /* Sources */,
 				733634E024FD50C1002C84DA /* Frameworks */,
 				733634E124FD50C1002C84DA /* Resources */,
-				736E117325F1D5F400789D67 /* Embed Frameworks */,
+				736E11F225F2084E00789D67 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = DataMine;
+			name = Storage;
 			packageProductDependencies = (
 			);
 			productName = DataMine;
-			productReference = 733634E324FD50C1002C84DA /* DataMine.framework */;
+			productReference = 733634E324FD50C1002C84DA /* Storage.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		733634EB24FD50C1002C84DA /* DataMineTests */ = {
@@ -387,7 +398,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				733634E224FD50C1002C84DA /* DataMine */,
+				733634E224FD50C1002C84DA /* Storage */,
 				733634EB24FD50C1002C84DA /* DataMineTests */,
 				7336351C24FD62A8002C84DA /* Demo */,
 				7336353124FD62AB002C84DA /* DemoTests */,
@@ -441,8 +452,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73EB42722602EA11003583DE /* Query.swift in Sources */,
+				73EB42662602E970003583DE /* Save.swift in Sources */,
 				7336351524FD5DDA002C84DA /* Model.swift in Sources */,
-				7336351624FD5DDA002C84DA /* RealmDB.swift in Sources */,
+				73EB426C2602E9AB003583DE /* Delete.swift in Sources */,
+				7336351624FD5DDA002C84DA /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,7 +498,7 @@
 /* Begin PBXTargetDependency section */
 		733634EF24FD50C1002C84DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 733634E224FD50C1002C84DA /* DataMine */;
+			target = 733634E224FD50C1002C84DA /* Storage */;
 			targetProxy = 733634EE24FD50C1002C84DA /* PBXContainerItemProxy */;
 		};
 		7336353424FD62AB002C84DA /* PBXTargetDependency */ = {
@@ -499,7 +513,7 @@
 		};
 		7336354E24FD6463002C84DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 733634E224FD50C1002C84DA /* DataMine */;
+			target = 733634E224FD50C1002C84DA /* Storage */;
 			targetProxy = 7336354D24FD6463002C84DA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -552,6 +566,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -616,6 +631,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -648,6 +664,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -683,6 +700,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -749,8 +767,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AYMHH2W3E;
-				"EXCLUDED_ARCHS[sdk=*]" = "";
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -771,6 +788,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AYMHH2W3E;
+				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -880,7 +898,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		733634F724FD50C1002C84DA /* Build configuration list for PBXNativeTarget "DataMine" */ = {
+		733634F724FD50C1002C84DA /* Build configuration list for PBXNativeTarget "Storage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				733634F824FD50C1002C84DA /* Debug */,
