@@ -56,8 +56,11 @@ make clean
 ### Example
 
 ```swift
-let create: Person = Person(id: 10, name: "person")
+
+        // new an object Person at main thread
+        let create: Person = Person(id: 10, name: "person")
         
+        // listen change at other thread E1
         DispatchQueue(label: "E1").sync {
             self.bag = create.observe(on: DispatchQueue.main) { (change) in
                 switch change {
@@ -73,10 +76,12 @@ let create: Person = Person(id: 10, name: "person")
             }
         }
         
+        // save object at other thread E2
         DispatchQueue(label: "E2").sync {
             try! create.insert()
         }
         
+        // upadte object at other thread E3
         DispatchQueue(label: "E3").async {
             for i in 0...10 {
                 sleep(2)
@@ -86,6 +91,8 @@ let create: Person = Person(id: 10, name: "person")
                 }
             }
             
+            
+            // delete object at other thread E4
             sleep(2)
             DispatchQueue(label: "E4").async {
                 try? create.delete()
