@@ -55,9 +55,13 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         
+        // new an object Person at main thread
+        print("new")
         let create: Person = Person(id: 10, name: "person")
         
-        DispatchQueue(label: "E1").sync {
+        // listen change at other thread E1
+        DispatchQueue(label: "E1").asyncAfter(deadline: .now() + 1) {
+            print("observe")
             self.bag = create.observe(on: DispatchQueue.main) { (change) in
                 switch change {
                 case .initial(let person):
@@ -72,11 +76,30 @@ class ViewController: UIViewController {
             }
         }
         
-        DispatchQueue(label: "E2").sync {
+        // save object at other thread E2
+        DispatchQueue(label: "E2").asyncAfter(deadline: .now() + 3) {
+            print("insert")
             try! create.insert()
         }
         
-        DispatchQueue(label: "E3").async {
+        // read object at other thread E12222. use this to access safe properties
+        DispatchQueue(label: "E21").asyncAfter(deadline: .now() + 5) {
+            print("get")
+            DispatchQueue.main.async {
+                if let per = Person.get(10) {
+                    DispatchQueue(label: "E12222").async {
+                        print("object:", per.this?.name)
+                    }
+                } else {
+                    print("get nil")
+                }
+            }
+            
+        }
+        
+        // upadte object at other thread E3
+        DispatchQueue(label: "E3").asyncAfter(deadline: .now() + 7) {
+            print("write")
             for i in 0...10 {
                 sleep(2)
                 try? create.write {
@@ -85,8 +108,11 @@ class ViewController: UIViewController {
                 }
             }
             
+            
+            // delete object at other thread E4
             sleep(2)
-            DispatchQueue(label: "E4").async {
+            DispatchQueue(label: "E4").asyncAfter(deadline: .now() + 1) {
+                print("delete")
                 try? create.delete()
             }
         }
