@@ -53,6 +53,47 @@ make clean
 
 ``` 
 
+### Example
+
+```
+let create: Person = Person(id: 10, name: "person")
+        
+        DispatchQueue(label: "E1").sync {
+            self.bag = create.observe(on: DispatchQueue.main) { (change) in
+                switch change {
+                case .initial(let person):
+                    print("notify initial:", Thread.current.name ?? "unknow", person.name)
+                case .update(let person):
+                    print("notify update:", Thread.current.name ?? "unknow", person.name)
+                case .delete:
+                    print("notify delete:", Thread.current.name ?? "unknow")
+                case .error(let error):
+                    print("error", error)
+                }
+            }
+        }
+        
+        DispatchQueue(label: "E2").sync {
+            try! create.insert()
+        }
+        
+        DispatchQueue(label: "E3").async {
+            for i in 0...10 {
+                sleep(2)
+                try? create.write {
+                    print("write")
+                    create.this?.name = "person🦴 \(i)"
+                }
+            }
+            
+            sleep(2)
+            DispatchQueue(label: "E4").async {
+                try? create.delete()
+            }
+        }
+
+```
+
 ## Refactor code from source: 
 - https://github.com/caophuocthanh/RealmSwift-Alamofire
 
