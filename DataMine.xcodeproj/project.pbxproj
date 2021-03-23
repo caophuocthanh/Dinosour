@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		732036532609BDED004F5CB5 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732036522609BDED004F5CB5 /* Thread.swift */; };
+		732036592609C392004F5CB5 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732036582609C392004F5CB5 /* Atomic.swift */; };
+		7321D7212608AD780053DAB3 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7321D7202608AD780053DAB3 /* RootViewController.swift */; };
 		733634ED24FD50C1002C84DA /* Storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733634E324FD50C1002C84DA /* Storage.framework */; };
 		733634F224FD50C1002C84DA /* DataMineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733634F124FD50C1002C84DA /* DataMineTests.swift */; };
 		733634F424FD50C1002C84DA /* DataMine.h in Headers */ = {isa = PBXBuildFile; fileRef = 733634E624FD50C1002C84DA /* DataMine.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -78,6 +81,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		732036522609BDED004F5CB5 /* Thread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
+		732036582609C392004F5CB5 /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
+		7321D7202608AD780053DAB3 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		733634E324FD50C1002C84DA /* Storage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Storage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		733634E624FD50C1002C84DA /* DataMine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataMine.h; sourceTree = "<group>"; };
 		733634E724FD50C1002C84DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -212,6 +218,8 @@
 				73EB42652602E970003583DE /* Save.swift */,
 				73EB426B2602E9AB003583DE /* Delete.swift */,
 				73EB42712602EA11003583DE /* Query.swift */,
+				732036522609BDED004F5CB5 /* Thread.swift */,
+				732036582609C392004F5CB5 /* Atomic.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -224,6 +232,7 @@
 				7336352824FD62AB002C84DA /* Assets.xcassets */,
 				7336352A24FD62AB002C84DA /* LaunchScreen.storyboard */,
 				7336352D24FD62AB002C84DA /* Info.plist */,
+				7321D7202608AD780053DAB3 /* RootViewController.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -453,9 +462,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				73EB42722602EA11003583DE /* Query.swift in Sources */,
+				732036532609BDED004F5CB5 /* Thread.swift in Sources */,
 				73EB42662602E970003583DE /* Save.swift in Sources */,
 				7336351524FD5DDA002C84DA /* Model.swift in Sources */,
 				73EB426C2602E9AB003583DE /* Delete.swift in Sources */,
+				732036592609C392004F5CB5 /* Atomic.swift in Sources */,
 				7336351624FD5DDA002C84DA /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,6 +485,7 @@
 			files = (
 				7336352424FD62A8002C84DA /* ViewController.swift in Sources */,
 				7336352024FD62A8002C84DA /* AppDelegate.swift in Sources */,
+				7321D7212608AD780053DAB3 /* RootViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

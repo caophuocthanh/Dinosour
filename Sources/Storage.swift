@@ -17,10 +17,10 @@ internal protocol StorageProtocol {
     init(name: String)
     
     // MARK: Methods
-    func save<T: Model>(type: T.Type, value: Model, update: Storage.SetType) throws
+    func insert<T: Model>(type: T.Type, value: Model, update: Storage.SetType) throws
     func delete(_ model: Model) throws
-    func object<T: Model>(id: Int) -> T?
-    func objects<T: Model>() -> [T]
+    func get<T: Model>(id: Int) -> T?
+    func all<T: Model>() -> [T]
     func write(block: @escaping (() throws -> Void)) throws
 }
 
@@ -34,12 +34,10 @@ internal class Storage: StorageProtocol {
             self.stores = [:]
         }
         
-        var stores: [Thread: Storage] = [:]
+        @Atomic var stores: [Thread: Storage] = [:]
         
         var store: Storage {
-            if let _store = self.stores[Thread.current] {
-                return _store
-            }
+            if let _store = self.stores[Thread.current] { return _store }
             let store = Storage()
             self.stores[Thread.current] = store
             return store
@@ -76,7 +74,6 @@ internal class Storage: StorageProtocol {
                                                                  appropriateFor: nil,
                                                                  create: false)
             let url = documentDirectory.appendingPathComponent("\(name).realm")
-            //print("init Realm \(name).realm at:", Thread.current)
             return url
         }()
         

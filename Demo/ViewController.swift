@@ -25,61 +25,88 @@ class Person: Model {
 
 class ViewController: UIViewController {
     
+    
+    let button: UIButton = {
+        let button: UIButton = UIButton()
+        button.setTitle("BACK", for: .normal)
+        return button
+    }()
+    
+    
     override func loadView() {
         super.loadView()
         self.view.backgroundColor = .red
+        
+        self.view.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        button.addTarget(self, action: #selector(tap), for: .touchUpInside)
     }
     
-    var bag: ModelOnChange<Person>?
+    @objc func tap() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    var bag: Model.Observable<Person>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let create: Person = Person(id: 10, name: "KSJGFLKHJSGF")
-        try! create.save()
         
-        let abc: Person? = Person.object(10)
-
-        abc?.changed { (e: Person?, c) in
-            print("🍎🍎🍎🍎🍎: change", c, e?.name)
-        }
-
-        sleep(1)
+        let create: Person = Person(id: 10, name: "Person_100000")
         
-        DispatchQueue.global().async {
-
-            if let model: Person = Person.object(10) {
-
-                print("model:", model.id, model.id)
-                print("AAAA:", Thread.current)
-                
-                sleep(1)
-                
-                for i in 0...10 {
-                    sleep(1)
-                    try? model.write {
-                        model.name = "10000_\(i)"
-                    }
-                    try? model.save()
-                }
-                
-                print("modelaa:", model.id)
-                try? model.delete()
-                
-            } else {
-                print("can not find")
+        self.bag = create.observe(on: DispatchQueue.main) { (change) in
+            switch change {
+            case .initial(let person):
+                print("notify initial:", Thread.current.name ?? "unknow", person.name)
+            case .update(let person):
+                print("notify update:", Thread.current.name ?? "unknow", person.name)
+            case .delete:
+                print("notify delete:", Thread.current.name ?? "unknow")
+            case .error(let error):
+                print("error", error)
             }
             
         }
         
-        //        if let amodel: Model = Storage.default.object(id: "allo") {
-        ////            amodel.observe { (o, changes) in
-        ////                print("_model:", o?.id, changes)
-        ////            }
-        //        }
+        try! create.insert()
+        
+        DispatchQueue(label: "a").async {
+            for i in 0...10 {
+                sleep(2)
+                try? create.write {
+                    print("write")
+                    create.this?.name = "aaaaa🦴 \(i)"
+                }
+            }
+            
+            sleep(2)
+            DispatchQueue(label: "aaaaa").async {
+            try? create.delete()
+            }
+        }
+        
+//        for i in 800...900 {
+//            DispatchQueue(label: "c").async {
+//                try? create.write {
+//                    create.this?.name = "🍉(\(i)"
+//                }
+//            }
+//        }
+        
+//        create100Person()
+//
+//
+//        if let person: Person = Person.get(10) {
+//            subcriblePersonAt(queue: DispatchQueue(label: "subcriblePersonAt"), person: person)
+//            updateModel(queue: DispatchQueue(label: "getPersonAt"), person: person, time: 100)
+//        }
     }
     
-    
+    deinit {
+        print(self," deinit")
+    }
 }
 

@@ -17,7 +17,7 @@ internal extension Storage {
      
      - returns: List Model Result (ZModel)
      */
-    func objects<T: Element>() -> [T] {
+    func all<T: Element>() -> [T] {
         return self.realm.objects(T.self).map{$0}.compactMap{$0}
     }
     
@@ -30,7 +30,7 @@ internal extension Storage {
      - returns: Object (ZModel)
      */
     
-    func object<T: Element>(id: Int) -> T? {
+    func get<T: Element>(id: Int) -> T? {
         let result = self.realm.objects(T.self)
         return result.filter("id == \(id)").first
     }
