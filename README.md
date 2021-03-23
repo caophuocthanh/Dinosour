@@ -55,7 +55,7 @@ make clean
 
 ### Example
 
-```
+```swift
 let create: Person = Person(id: 10, name: "person")
         
         DispatchQueue(label: "E1").sync {
