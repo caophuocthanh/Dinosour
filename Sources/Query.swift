@@ -6,33 +6,49 @@
 //  Copyright © 2021 Cao Phuoc Thanh. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import RealmSwift
 
 internal extension Storage {
     
-    /**
-     Get all object with object type
-     
-     - parameter type: Object Type
-     
-     - returns: List Model Result (ZModel)
-     */
-    func all<T: Element>() -> [T] {
+    func find<T: Element>() -> [T] {
         return self.realm.objects(T.self).map{$0}.compactMap{$0}
     }
     
-    /**
-     Get object with id (primary key)
-     
-     - parameter type: Object type
-     - parameter id:   id (primary key)
-     
-     - returns: Object (ZModel)
-     */
-    
-    func get<T: Element>(id: Int) -> T? {
+    func find<T: Element>(id: Int) -> T? {
         let result = self.realm.objects(T.self)
         return result.filter("id == \(id)").first
     }
     
+    func filter<Value: Equatable, T: Element, E: Any>(
+        by keyPath: KeyPath<T, Value>,
+        equal compareValue: E) -> List<T> {
+        let result: Results<T> = self.realm.objects(T.self).filter("\(keyPath.stringValue) == \(compareValue)")
+        return List<T>(result)
+    }
+    
+    func filter<Value: Equatable, T: Element, E: Any>(
+        by keyPath: KeyPath<T, Value>,
+        operator basicOperator: BasicOperator,
+        to compareValue: E) -> List<T> {
+        let result: Results<T> = self.realm.objects(T.self).filter("\(keyPath.stringValue) \(basicOperator.string) \(compareValue)")
+        return List<T>(result)
+    }
+    
+    func filter<Value: Equatable, T: Element>(
+        by keyPath: KeyPath<T, Value>,
+        in strings: [String]) -> List<T> {
+        let string = "{\(strings.map { "'\($0)'"}.joined(separator: ","))}"
+        let query = "%\(keyPath.stringValue) IN \(string)"
+        print("query:", query)
+        let result: Results<T> =  self.realm.objects(T.self).filter(query)
+        return List<T>(result)
+    }
+
+}
+
+extension KeyPath where Root: NSObject {
+    var stringValue: String {
+        NSExpression(forKeyPath: self).keyPath
+    }
 }

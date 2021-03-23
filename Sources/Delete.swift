@@ -6,7 +6,7 @@
 //  Copyright © 2021 Cao Phuoc Thanh. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 internal extension Storage {
 

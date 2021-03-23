@@ -19,9 +19,24 @@ internal protocol StorageProtocol {
     // MARK: Methods
     func insert<T: Model>(type: T.Type, value: Model, update: Storage.SetType) throws
     func delete(_ model: Model) throws
-    func get<T: Model>(id: Int) -> T?
-    func all<T: Model>() -> [T]
+    
     func write(block: @escaping (() throws -> Void)) throws
+    
+    func find<T: Model>(id: Int) -> T?
+    func find<T: Model>() -> [T]
+    
+    func filter<Value: Equatable, T: Model, E: Any>(
+        by keyPath: KeyPath<T, Value>,
+        equal compareValue: E) -> List<T>
+    
+    func filter<Value: Equatable, T: Model, E: Any>(
+        by keyPath: KeyPath<T, Value>,
+        operator basicOperator: BasicOperator,
+        to compareValue: E) -> List<T>
+    
+    func filter<Value: Equatable, T: Model>(
+        by keyPath: KeyPath<T, Value>,
+        in strings: [String]) -> List<T>
 }
 
 internal class Storage: StorageProtocol {

@@ -49,15 +49,34 @@ class ViewController: UIViewController {
     }
     
     var bag: Model.Observable<Person>?
+    var listbag: Model.NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        DispatchQueue(label: "E2").sync {
+            let a: List<Person> = Person.filter(
+                by: \.id,
+                operator: .greaterOrEqual,
+                to: 10
+            )
+            self.listbag = a.observe(on: DispatchQueue(label: "SDSDSD")) { (change) in
+                switch change {
+                case .update(let deletions, let insertions, let modifications):
+                    print("observe update:", deletions, insertions, modifications)
+                case .initial:
+                    print("observe init:")
+                case .error(let error):
+                    print("observe error:", error)
+                }
+            }
+            print("AAAAA:", a.objects)
+        }
         
         // new an object Person at main thread
         print("new")
-        let create: Person = Person(id: 10, name: "person")
+        let create: Person = Person.init(id: 10, name: "person")
         
         // listen change at other thread E1
         DispatchQueue(label: "E1").asyncAfter(deadline: .now() + 1) {
@@ -86,7 +105,7 @@ class ViewController: UIViewController {
         DispatchQueue(label: "E21").asyncAfter(deadline: .now() + 5) {
             print("get")
             DispatchQueue.main.async {
-                if let per = Person.get(10) {
+                if let per = Person.find(id: 10) {
                     DispatchQueue(label: "E12222").async {
                         print("object:", per.this?.name)
                     }

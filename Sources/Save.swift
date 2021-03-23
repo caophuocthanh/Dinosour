@@ -6,6 +6,7 @@
 //  Copyright © 2021 Cao Phuoc Thanh. All rights reserved.
 //
 
+import Foundation
 import RealmSwift
 import Realm
 

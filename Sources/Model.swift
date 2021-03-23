@@ -12,9 +12,9 @@ import Realm
 
 public extension Model {
     
-    typealias ModelNotificationToken = RLMNotificationToken
+    typealias NotificationToken = RLMNotificationToken
     
-    enum ChangeStatus<T: Model> {
+    enum ModelChange<T: Model> {
         case initial(T)
         case update(T)
         case delete
@@ -36,7 +36,7 @@ open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
     
     public var this: Self? {
         guard self._thread == Thread.current else {
-            return database.get(id: self._uid)
+            return database.find(id: self._uid)
         }
         return self
     }
@@ -58,7 +58,7 @@ open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
         self._uid = id
         self._thread = Thread.current
     }
-    
+        
     public func observe<T: Model>(on queue: DispatchQueue? = nil,_ calback: @escaping Model.ObservableCalback<T>) -> Observable<T> {
         return Observable(T.self, queue: queue, id: self._uid, calback: calback)
     }
@@ -73,7 +73,7 @@ open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
     
     public func delete() throws {
         if self._thread != Thread.current {
-            if let model: Self = database.get(id: self._uid) {
+            if let model: Self = database.find(id: self._uid) {
                 try model.delete()
             } else {
                 print("delete nil", Self.self, self._uid)
@@ -84,11 +84,11 @@ open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
     }
     
     public func isExisted() -> Bool {
-        return database.get(id: self._uid) != nil
+        return database.find(id: self._uid) != nil
     }
     
-    public static func get(_ id: Int) -> Self? {
-        if let model: Self = database.get(id: id) {
+    public static func find(id: Int) -> Self? {
+        if let model: Self = database.find(id: id) {
             model._uid = model.id
             model._thread = Thread.current
             return model
@@ -96,8 +96,8 @@ open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
         return nil
     }
     
-    public static func all<T: Model>() -> [T] {
-        let result: [T] = database.all()
+    public static func find<T: Model>() -> [T] {
+        let result: [T] = database.find()
         for model in result {
             model._uid = model.id
             model._thread = Thread.current
@@ -105,25 +105,42 @@ open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
         return result
     }
     
+    public static func filter<Value: Equatable, T: Model, E: Any>(
+        by keyPath: KeyPath<T, Value>,
+        equal compareValue: E) -> List<T> {
+        return database.filter(by: keyPath, operator: .equal, to: compareValue)
+    }
+    
+    public static func filter<Value: Equatable, T: Model, E: Any>(
+        by keyPath: KeyPath<T, Value>,
+        operator basicOperator: BasicOperator,
+        to compareValue: E) -> List<T> {
+        return database.filter(by: keyPath, operator: basicOperator, to: compareValue)
+    }
+    
+    public static func filter<Value: Equatable, T: Model>(
+        by keyPath: KeyPath<T, Value>,
+        in strings: [String]) -> List<T> {
+        return database.filter(by: keyPath, in: strings)
+    }
+    
 }
 
 
 public extension Model {
     
-    typealias ObservableCalback<T: Model> = (Model.ChangeStatus<T>) -> Void
-    
-    
+    typealias ObservableCalback<T: Model> = (Model.ModelChange<T>) -> Void
     
     class Observable<T: Model> {
         
         private let _error: Error = NSError(domain: "observe error", code: 1, userInfo: nil)
         
-        private var token: Model.ModelNotificationToken? = nil
-        private var notificationRunLoop: ReleasepoolThread? = nil
+        private var token: Model.NotificationToken?
+        private var threadPool: ReleasepoolThread? = nil
         
         init(_ type: T.Type, queue: DispatchQueue? = nil, id: Int,  calback: @escaping ObservableCalback<T>) {
-            self.notificationRunLoop = ReleasepoolThread(name: "observe")
-            self.notificationRunLoop?.runLoopPerformBlock {
+            self.threadPool = ReleasepoolThread(name: "observe")
+            self.threadPool?.runLoopPerformBlock {
                 let result = database.realm.objects(type).filter("id == \(id)")
                 self.token = result.observe { (changes) in
                     switch changes {
@@ -133,23 +150,23 @@ public extension Model {
                                 let ref = ThreadSafeReference(to: model)
                                 queue.async {
                                     if let o = database.realm.resolve(ref) {
-                                        calback(Model.ChangeStatus.initial(o))
+                                        calback(Model.ModelChange.initial(o))
                                     } else {
-                                        calback(Model.ChangeStatus.error(self._error))
+                                        calback(Model.ModelChange.error(self._error))
                                     }
                                 }
                             } else {
-                                calback(Model.ChangeStatus.initial(model))
+                                calback(Model.ModelChange.initial(model))
                             }
                         }
                     case .update(let result, deletions: let deletions, insertions: _, modifications: let modifications):
                         if deletions.count > 0 {
                             if let queue = queue {
                                 queue.async {
-                                    calback(Model.ChangeStatus.delete)
+                                    calback(Model.ModelChange.delete)
                                 }
                             } else {
-                                calback(Model.ChangeStatus.delete)
+                                calback(Model.ModelChange.delete)
                             }
                         } else if modifications.count > 0 {
                             if let model = result.last {
@@ -157,23 +174,23 @@ public extension Model {
                                     let ref = ThreadSafeReference(to: model)
                                     queue.async {
                                         if let o = database.realm.resolve(ref) {
-                                            calback(Model.ChangeStatus.update(o))
+                                            calback(Model.ModelChange.update(o))
                                         } else {
-                                            calback(Model.ChangeStatus.error(self._error))
+                                            calback(Model.ModelChange.error(self._error))
                                         }
                                     }
                                 } else {
-                                    calback(Model.ChangeStatus.update(model))
+                                    calback(Model.ModelChange.update(model))
                                 }
                             }
                         }
                     case .error(let error):
                         if let queue = queue {
                             queue.async {
-                                calback(Model.ChangeStatus.error(error))
+                                calback(Model.ModelChange.error(error))
                             }
                         } else {
-                            calback(Model.ChangeStatus.error(error))
+                            calback(Model.ModelChange.error(error))
                         }
                     }
                 }
