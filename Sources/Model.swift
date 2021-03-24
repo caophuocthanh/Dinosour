@@ -22,8 +22,6 @@ public extension Model {
     }
 }
 
-
-
 open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
     
     @objc dynamic public var id: Int = 0
@@ -32,7 +30,6 @@ open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
     
     internal var _uid: Int = 0
     internal var _thread: Thread = Thread.current
-    
     
     public var this: Self? {
         guard self._thread == Thread.current else {
@@ -46,6 +43,7 @@ open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
     }
     
     override init() {
+        print(Self.self, "init")
         super.init()
         self.id = 0
         self._uid = 0
@@ -58,9 +56,9 @@ open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
         self._uid = id
         self._thread = Thread.current
     }
-        
-    public func observe<T: Model>(on queue: DispatchQueue? = nil,_ calback: @escaping Model.ObservableCalback<T>) -> Observable<T> {
-        return Observable(T.self, queue: queue, id: self._uid, calback: calback)
+    
+    deinit {
+        print(Self.self, "deinit")
     }
     
     public func write(block: @escaping (() throws -> Void)) throws {
@@ -85,6 +83,27 @@ open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
     
     public func isExisted() -> Bool {
         return database.find(id: self._uid) != nil
+    }
+    
+    public func observe<T: Model>(on queue: DispatchQueue? = nil,_ calback: @escaping Model.ObservableCalback<T>) -> Observable<T> {
+        return Observable(T.self, queue: queue, id: self._uid, calback: calback)
+    }
+    
+    public func observe<T: Model>(on queue: DispatchQueue? = nil,_ calback: @escaping Model.ObservableCalback<T>)-> NotificationToken? {
+        
+        guard let model: T = database.find(id: self._uid) else { return nil }
+        
+        return model.observe(on: queue) { (change: ObjectChange<T>) in
+            switch change {
+            case .change(let model, let properties):
+                print("properties:", properties)
+                calback(Model.ModelChange<T>.update(model))
+            case .deleted:
+                calback(Model.ModelChange<T>.delete)
+            case .error(let error):
+                calback(Model.ModelChange<T>.error(error))
+            }
+        }
     }
     
     public static func find(id: Int) -> Self? {
@@ -136,12 +155,12 @@ public extension Model {
         private let _error: Error = NSError(domain: "observe error", code: 1, userInfo: nil)
         
         private var token: Model.NotificationToken?
-        private var threadPool: ReleasepoolThread? = nil
+        private var threadPool: ThreadPool? = nil
         
         init(_ type: T.Type, queue: DispatchQueue? = nil, id: Int,  calback: @escaping ObservableCalback<T>) {
-            self.threadPool = ReleasepoolThread(name: "observe")
-            self.threadPool?.runLoopPerformBlock {
-                let result = database.realm.objects(type).filter("id == \(id)")
+            self.threadPool = ThreadPool(name: "observe")
+            self.threadPool?.perform {
+                let result: Results<T> = database.realm.objects(type).filter("id == \(id)")
                 self.token = result.observe { (changes) in
                     switch changes {
                     case .initial(let result):

@@ -34,9 +34,11 @@ public class List<T: Model> {
             case .initial( _):
                 block(ListChange<T>.initial)
             case .update(_, let deletions , let insertions, let modifications):
-                block(ListChange<T>.update(deletions: deletions,
-                                                 insertions: insertions,
-                                                 modifications: modifications))
+                block(ListChange<T>.update(
+                        deletions: deletions,
+                        insertions: insertions,
+                        modifications: modifications)
+                )
             case .error(let error):
                 block(ListChange<T>.error(error))
             }

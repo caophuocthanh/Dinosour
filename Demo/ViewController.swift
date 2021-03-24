@@ -25,18 +25,15 @@ class Person: Model {
 
 class ViewController: UIViewController {
     
-    
     let button: UIButton = {
         let button: UIButton = UIButton()
         button.setTitle("BACK", for: .normal)
         return button
     }()
     
-    
     override func loadView() {
         super.loadView()
         self.view.backgroundColor = .red
-        
         self.view.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -50,6 +47,9 @@ class ViewController: UIViewController {
     
     var bag: Model.Observable<Person>?
     var listbag: Model.NotificationToken?
+    
+    var objectbag: Model.NotificationToken?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,12 +76,12 @@ class ViewController: UIViewController {
         
         // new an object Person at main thread
         print("new")
-        let create: Person = Person.init(id: 10, name: "person")
+        let create: Person = Person(id: 10, name: "person")
         
         // listen change at other thread E1
         DispatchQueue(label: "E1").asyncAfter(deadline: .now() + 1) {
             print("observe")
-            self.bag = create.observe(on: DispatchQueue.main) { (change) in
+            self.objectbag = create.observe(on: DispatchQueue.main) { (change: Model.ModelChange<Person>) in
                 switch change {
                 case .initial(let person):
                     print("notify initial:", Thread.current.name ?? "unknow", person.name)

@@ -29,11 +29,3 @@ internal class Atomic<Value> {
         self.value = wrappedValue
     }
 }
-
-@propertyWrapper
-final public class Capitalized<Value> {
-    public var wrappedValue: Value
-    public init(wrappedValue: Value) {
-        self.wrappedValue = wrappedValue
-    }
-}
