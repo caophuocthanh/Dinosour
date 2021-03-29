@@ -37,6 +37,8 @@ internal protocol StorageProtocol {
     func filter<Value: Equatable, T: Model>(
         by keyPath: KeyPath<T, Value>,
         in strings: [String]) -> List<T>
+    
+    func filter<T: Model>(query string: String) -> List<T>
 }
 
 internal class Storage: StorageProtocol {

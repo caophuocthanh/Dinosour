@@ -12,27 +12,27 @@ import RealmSwift
 internal extension Storage {
     
     func find<T: Element>() -> [T] {
-        return self.realm.objects(T.self).map{$0}.compactMap{$0}
+        return self.realm.objects(T.self).map{ $0 }.compactMap{ $0 }
     }
     
     func find<T: Element>(id: Int) -> T? {
-        let result = self.realm.objects(T.self)
-        return result.filter("id == \(id)").first
+        let query = "id == \(id)"
+        return self.filter(query: query).first
     }
     
     func filter<Value: Equatable, T: Element, E: Any>(
         by keyPath: KeyPath<T, Value>,
         equal compareValue: E) -> List<T> {
-        let result: Results<T> = self.realm.objects(T.self).filter("\(keyPath.stringValue) == \(compareValue)")
-        return List<T>(result)
+        let query = "\(keyPath.stringValue) == \(compareValue)"
+        return self.filter(query: query)
     }
     
     func filter<Value: Equatable, T: Element, E: Any>(
         by keyPath: KeyPath<T, Value>,
         operator basicOperator: BasicOperator,
         to compareValue: E) -> List<T> {
-        let result: Results<T> = self.realm.objects(T.self).filter("\(keyPath.stringValue) \(basicOperator.string) \(compareValue)")
-        return List<T>(result)
+        let query = "\(keyPath.stringValue) \(basicOperator.string) \(compareValue)"
+        return self.filter(query: query)
     }
     
     func filter<Value: Equatable, T: Element>(
@@ -40,8 +40,12 @@ internal extension Storage {
         in strings: [String]) -> List<T> {
         let string = "{\(strings.map { "'\($0)'"}.joined(separator: ","))}"
         let query = "%\(keyPath.stringValue) IN \(string)"
-        print("query:", query)
-        let result: Results<T> =  self.realm.objects(T.self).filter(query)
+        return self.filter(query: query)
+    }
+    
+    func filter<T: Element>(query string: String) -> List<T> {
+        print("[",T.self,"]","- query: \"\(string)\"")
+        let result: Results<T> = self.realm.objects(T.self).filter(string)
         return List<T>(result)
     }
 

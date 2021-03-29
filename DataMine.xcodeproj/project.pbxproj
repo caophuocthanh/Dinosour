@@ -217,15 +217,8 @@
 		7336351724FD5DE7002C84DA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				7336351324FD5DD5002C84DA /* Model.swift */,
-				7336351424FD5DDA002C84DA /* Storage.swift */,
-				73EB42652602E970003583DE /* Save.swift */,
-				73EB426B2602E9AB003583DE /* Delete.swift */,
-				73EB42712602EA11003583DE /* Query.swift */,
-				732036522609BDED004F5CB5 /* Thread.swift */,
-				732036582609C392004F5CB5 /* Atomic.swift */,
-				7375C703260A34DE006F99DF /* List.swift */,
-				7375C70D260A5CC0006F99DF /* Operator.swift */,
+				73F8909A260B078B0086254D /* Public */,
+				73F89099260B077F0086254D /* Internal */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -259,6 +252,29 @@
 				7336354324FD62AC002C84DA /* Info.plist */,
 			);
 			path = DemoUITests;
+			sourceTree = "<group>";
+		};
+		73F89099260B077F0086254D /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				7336351424FD5DDA002C84DA /* Storage.swift */,
+				73EB42652602E970003583DE /* Save.swift */,
+				73EB426B2602E9AB003583DE /* Delete.swift */,
+				73EB42712602EA11003583DE /* Query.swift */,
+				732036522609BDED004F5CB5 /* Thread.swift */,
+				732036582609C392004F5CB5 /* Atomic.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		73F8909A260B078B0086254D /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				7336351324FD5DD5002C84DA /* Model.swift */,
+				7375C703260A34DE006F99DF /* List.swift */,
+				7375C70D260A5CC0006F99DF /* Operator.swift */,
+			);
+			path = Public;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

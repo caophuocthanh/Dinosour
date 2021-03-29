@@ -45,60 +45,44 @@ class ViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    var bag: Model.Observable<Person>?
-    var listbag: Model.NotificationToken?
-    
-    var objectbag: Model.NotificationToken?
+    var bag: NotificationTokenBag = NotificationTokenBag()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        DispatchQueue(label: "E2").sync {
-            let a: List<Person> = Person.filter(
-                by: \.id,
-                operator: .greaterOrEqual,
-                to: 10
-            )
-            self.listbag = a.observe(on: DispatchQueue(label: "SDSDSD")) { (change) in
-                switch change {
-                case .update(let deletions, let insertions, let modifications):
-                    print("observe update:", deletions, insertions, modifications)
-                case .initial:
-                    print("observe init:")
-                case .error(let error):
-                    print("observe error:", error)
-                }
-            }
-            print("AAAAA:", a.objects)
+        // new an object Person at main thread
+        
+        let perons: List<Person> = Person.filter(by: \.id, operator: .greater, to: 0)
+        perons.observe(on:  DispatchQueue(label: "AASASAS")) { (chane) in
+            print("KJKKKKKKKKKK:", chane)
+        }.disposed(by: self.bag)
+        
+
+      let create: Person = Person(id: 10, name: "person")
+        
+        let obser = create.observe(\.id, options: [.new, .old]) { (person, change) in
+            print("KAJD")
         }
         
-        // new an object Person at main thread
-        print("new")
-        let create: Person = Person(id: 10, name: "person")
+        try! create.insert()
         
         // listen change at other thread E1
         DispatchQueue(label: "E1").asyncAfter(deadline: .now() + 1) {
             print("observe")
-            self.objectbag = create.observe(on: DispatchQueue.main) { (change: Model.ModelChange<Person>) in
+            create.observe(on: DispatchQueue.main) { (change: Model.ModelChange<Person>) in
                 switch change {
                 case .initial(let person):
                     print("notify initial:", Thread.current.name ?? "unknow", person.name)
-                case .update(let person):
-                    print("notify update:", Thread.current.name ?? "unknow", person.name)
+                case .update(let person, let properties):
+                    print("notify update:", Thread.current.name ?? "unknow", person.name, properties)
                 case .delete:
                     print("notify delete:", Thread.current.name ?? "unknow")
                 case .error(let error):
                     print("error", error)
                 }
-            }
-        }
-        
-        // save object at other thread E2
-        DispatchQueue(label: "E2").asyncAfter(deadline: .now() + 3) {
-            print("insert")
-            try! create.insert()
+            }?.disposed(by: self.bag)
         }
         
         // read object at other thread E12222. use this to access safe properties
@@ -120,7 +104,7 @@ class ViewController: UIViewController {
         DispatchQueue(label: "E3").asyncAfter(deadline: .now() + 7) {
             print("write")
             for i in 0...10 {
-                sleep(2)
+                //sleep(1)
                 try? create.write {
                     print("write")
                     create.this?.name = "person🦴 \(i)"

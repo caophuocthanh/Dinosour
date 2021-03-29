@@ -28,6 +28,10 @@ public class List<T: Model> {
         return result.map { $0 }
     }
     
+    public var first: T? {
+        return result.first
+    }
+    
     public func observe(on queue: DispatchQueue? = nil, block: @escaping (ListChange<T>) -> Void) -> Model.NotificationToken {
         return self.result.observe(on: queue) { change in
             switch change {
