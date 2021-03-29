@@ -35,7 +35,7 @@ public extension Model {
     
     typealias NotificationToken = RLMNotificationToken
     typealias PropertyChange = (name: String, oldValue: Any?, newValue: Any?)
-    typealias ObservableCalback<T: Model> = (Model.ModelChange<T>) -> Void
+    typealias ObservableCalback<T: Model> = (T?, Model.ModelChange<T>) -> Void
     
     enum ModelChange<T: Model> {
         case initial(T)
@@ -113,11 +113,11 @@ open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
         return model.observe(on: queue) { (change: ObjectChange<T>) in
             switch change {
             case .change(let model, let properties):
-                calback(Model.ModelChange<T>.update(model, properties.map { ($0.name, $0.oldValue, $0.newValue) }))
+                calback(model, Model.ModelChange<T>.update(model, properties.map { ($0.name, $0.oldValue, $0.newValue) }))
             case .deleted:
-                calback(Model.ModelChange<T>.delete)
+                calback(nil, Model.ModelChange<T>.delete)
             case .error(let error):
-                calback(Model.ModelChange<T>.error(error))
+                calback(model, Model.ModelChange<T>.error(error))
             }
         }
     }

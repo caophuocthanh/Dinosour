@@ -62,16 +62,12 @@ class ViewController: UIViewController {
 
       let create: Person = Person(id: 10, name: "person")
         
-        let obser = create.observe(\.id, options: [.new, .old]) { (person, change) in
-            print("KAJD")
-        }
-        
         try! create.insert()
         
         // listen change at other thread E1
         DispatchQueue(label: "E1").asyncAfter(deadline: .now() + 1) {
             print("observe")
-            create.observe(on: DispatchQueue.main) { (change: Model.ModelChange<Person>) in
+            create.observe(on: DispatchQueue.main) { (_, change: Model.ModelChange<Person>) in
                 switch change {
                 case .initial(let person):
                     print("notify initial:", Thread.current.name ?? "unknow", person.name)
