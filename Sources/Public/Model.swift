@@ -148,7 +148,7 @@ open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
     
     public static func filter<Value: Equatable, T: Model, E: Any>(
         by keyPath: KeyPath<T, Value>,
-        operator basicOperator: BasicOperator,
+        operator basicOperator: Operator,
         to compareValue: E) -> List<T> {
         return database.filter(by: keyPath, operator: basicOperator, to: compareValue)
     }

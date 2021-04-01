@@ -31,7 +31,7 @@ internal protocol StorageProtocol {
     
     func filter<Value: Equatable, T: Model, E: Any>(
         by keyPath: KeyPath<T, Value>,
-        operator basicOperator: BasicOperator,
+        operator basicOperator: Operator,
         to compareValue: E) -> List<T>
     
     func filter<Value: Equatable, T: Model>(

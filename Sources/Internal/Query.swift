@@ -29,7 +29,7 @@ internal extension Storage {
     
     func filter<Value: Equatable, T: Element, E: Any>(
         by keyPath: KeyPath<T, Value>,
-        operator basicOperator: BasicOperator,
+        operator basicOperator: Operator,
         to compareValue: E) -> List<T> {
         let query = "\(keyPath.stringValue) \(basicOperator.string) \(compareValue)"
         return self.filter(query: query)

@@ -7,7 +7,7 @@
 //
 
 // https://academy.realm.io/posts/nspredicate-cheatsheet/
-public enum BasicOperator {
+public enum Operator {
     
     case equal
     case notEqual
