@@ -1,3 +1,3 @@
-github "https://github.com/Alamofire/Alamofire.git"
+#github "https://github.com/Alamofire/Alamofire.git"
 github "https://github.com/realm/realm-cocoa.git"
 #gitHub "https://github.com/JohnSundell/Codextended.git" "0.3.0"

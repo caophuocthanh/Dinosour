@@ -17,7 +17,7 @@
                BlueprintIdentifier = "733634E224FD50C1002C84DA"
                BuildableName = "Storage.framework"
                BlueprintName = "Storage"
-               ReferencedContainer = "container:DataMine.xcodeproj">
+               ReferencedContainer = "container:Database.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "733634EB24FD50C1002C84DA"
-               BuildableName = "DataMineTests.xctest"
-               BlueprintName = "DataMineTests"
-               ReferencedContainer = "container:DataMine.xcodeproj">
+               BuildableName = "DatabaseTests.xctest"
+               BlueprintName = "DatabaseTests"
+               ReferencedContainer = "container:Database.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -63,7 +63,7 @@
             BlueprintIdentifier = "733634E224FD50C1002C84DA"
             BuildableName = "Storage.framework"
             BlueprintName = "Storage"
-            ReferencedContainer = "container:DataMine.xcodeproj">
+            ReferencedContainer = "container:Database.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

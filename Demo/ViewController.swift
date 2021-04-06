@@ -47,7 +47,6 @@ class ViewController: UIViewController {
     
     var bag: NotificationTokenBag = NotificationTokenBag()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -93,7 +92,6 @@ class ViewController: UIViewController {
                     print("get nil")
                 }
             }
-            
         }
         
         // upadte object at other thread E3
@@ -107,13 +105,13 @@ class ViewController: UIViewController {
                 }
             }
             
-            
-            // delete object at other thread E4
-            sleep(2)
-            DispatchQueue(label: "E4").asyncAfter(deadline: .now() + 1) {
-                print("delete")
-                try? create.delete()
-            }
+//
+//            // delete object at other thread E4
+//            sleep(2)
+//            DispatchQueue(label: "E4").asyncAfter(deadline: .now() + 1) {
+//                print("delete")
+//                try? create.delete()
+//            }
         }
     }
     

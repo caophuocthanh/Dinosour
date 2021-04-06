@@ -22,8 +22,6 @@
 		7336353724FD62AB002C84DA /* DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7336353624FD62AB002C84DA /* DemoTests.swift */; };
 		7336354224FD62AC002C84DA /* DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7336354124FD62AC002C84DA /* DemoUITests.swift */; };
 		73432C7525F75B6900BA8451 /* Storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733634E324FD50C1002C84DA /* Storage.framework */; };
-		736E11F025F2084E00789D67 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355524FD6802002C84DA /* Alamofire.framework */; };
-		736E11F125F2084E00789D67 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355524FD6802002C84DA /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		736E11F325F2085000789D67 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355724FD6839002C84DA /* Realm.framework */; };
 		736E11F425F2085000789D67 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355724FD6839002C84DA /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		736E11F525F2085100789D67 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7336355124FD67E5002C84DA /* RealmSwift.framework */; };
@@ -74,7 +72,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				736E11F425F2085000789D67 /* Realm.framework in Embed Frameworks */,
-				736E11F125F2084E00789D67 /* Alamofire.framework in Embed Frameworks */,
 				736E11F625F2085100789D67 /* RealmSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -89,7 +86,7 @@
 		733634E324FD50C1002C84DA /* Storage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Storage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		733634E624FD50C1002C84DA /* DataMine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataMine.h; sourceTree = "<group>"; };
 		733634E724FD50C1002C84DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		733634EC24FD50C1002C84DA /* DataMineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataMineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		733634EC24FD50C1002C84DA /* DatabaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DatabaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		733634F124FD50C1002C84DA /* DataMineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMineTests.swift; sourceTree = "<group>"; };
 		733634F324FD50C1002C84DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7336351324FD5DD5002C84DA /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -107,7 +104,6 @@
 		7336354124FD62AC002C84DA /* DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoUITests.swift; sourceTree = "<group>"; };
 		7336354324FD62AC002C84DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7336355124FD67E5002C84DA /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
-		7336355524FD6802002C84DA /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alamofire.framework; sourceTree = "<group>"; };
 		7336355724FD6839002C84DA /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		7375C703260A34DE006F99DF /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		7375C70D260A5CC0006F99DF /* Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
@@ -122,7 +118,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				736E11F325F2085000789D67 /* Realm.framework in Frameworks */,
-				736E11F025F2084E00789D67 /* Alamofire.framework in Frameworks */,
 				736E11F525F2085100789D67 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				733634E324FD50C1002C84DA /* Storage.framework */,
-				733634EC24FD50C1002C84DA /* DataMineTests.xctest */,
+				733634EC24FD50C1002C84DA /* DatabaseTests.xctest */,
 				7336351D24FD62A8002C84DA /* Demo.app */,
 				7336353224FD62AB002C84DA /* DemoTests.xctest */,
 				7336353D24FD62AC002C84DA /* DemoUITests.xctest */,
@@ -208,7 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				7336355724FD6839002C84DA /* Realm.framework */,
-				7336355524FD6802002C84DA /* Alamofire.framework */,
 				7336355124FD67E5002C84DA /* RealmSwift.framework */,
 			);
 			path = Frameworks;
@@ -312,9 +306,9 @@
 			productReference = 733634E324FD50C1002C84DA /* Storage.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		733634EB24FD50C1002C84DA /* DataMineTests */ = {
+		733634EB24FD50C1002C84DA /* DatabaseTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 733634FA24FD50C1002C84DA /* Build configuration list for PBXNativeTarget "DataMineTests" */;
+			buildConfigurationList = 733634FA24FD50C1002C84DA /* Build configuration list for PBXNativeTarget "DatabaseTests" */;
 			buildPhases = (
 				733634E824FD50C1002C84DA /* Sources */,
 				733634E924FD50C1002C84DA /* Frameworks */,
@@ -325,9 +319,9 @@
 			dependencies = (
 				733634EF24FD50C1002C84DA /* PBXTargetDependency */,
 			);
-			name = DataMineTests;
+			name = DatabaseTests;
 			productName = DataMineTests;
-			productReference = 733634EC24FD50C1002C84DA /* DataMineTests.xctest */;
+			productReference = 733634EC24FD50C1002C84DA /* DatabaseTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		7336351C24FD62A8002C84DA /* Demo */ = {
@@ -414,7 +408,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 733634DD24FD50C1002C84DA /* Build configuration list for PBXProject "DataMine" */;
+			buildConfigurationList = 733634DD24FD50C1002C84DA /* Build configuration list for PBXProject "Database" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -430,7 +424,7 @@
 			projectRoot = "";
 			targets = (
 				733634E224FD50C1002C84DA /* Storage */,
-				733634EB24FD50C1002C84DA /* DataMineTests */,
+				733634EB24FD50C1002C84DA /* DatabaseTests */,
 				7336351C24FD62A8002C84DA /* Demo */,
 				7336353124FD62AB002C84DA /* DemoTests */,
 				7336353C24FD62AC002C84DA /* DemoUITests */,
@@ -925,7 +919,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		733634DD24FD50C1002C84DA /* Build configuration list for PBXProject "DataMine" */ = {
+		733634DD24FD50C1002C84DA /* Build configuration list for PBXProject "Database" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				733634F524FD50C1002C84DA /* Debug */,
@@ -943,7 +937,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		733634FA24FD50C1002C84DA /* Build configuration list for PBXNativeTarget "DataMineTests" */ = {
+		733634FA24FD50C1002C84DA /* Build configuration list for PBXNativeTarget "DatabaseTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				733634FB24FD50C1002C84DA /* Debug */,
