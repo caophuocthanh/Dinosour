@@ -142,24 +142,24 @@ public extension Model {
     
     public static func filter<Value: Equatable, T: Model, E: Any>(
         by keyPath: KeyPath<T, Value>,
-        equal compareValue: E) -> List<T> {
+        equal compareValue: E) -> Pool<T> {
         return database.filter(by: keyPath, operator: .equal, to: compareValue)
     }
     
     public static func filter<Value: Equatable, T: Model, E: Any>(
         by keyPath: KeyPath<T, Value>,
         operator basicOperator: Operator,
-        to compareValue: E) -> List<T> {
+        to compareValue: E) -> Pool<T> {
         return database.filter(by: keyPath, operator: basicOperator, to: compareValue)
     }
     
     public static func filter<Value: Equatable, T: Model>(
         by keyPath: KeyPath<T, Value>,
-        in strings: [String]) -> List<T> {
+        in strings: [String]) -> Pool<T> {
         return database.filter(by: keyPath, in: strings)
     }
     
-    func filter<T: Model>(query string: String) -> List<T> {
+    func filter<T: Model>(query string: String) -> Pool<T> {
         return database.filter(query: string)
     }
 }

@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         
         // new an object Person at main thread
         
-        let perons: List<Person> = Person.filter(by: \.id, operator: .greater, to: 0)
+        let perons: Pool<Person> = Person.filter(by: \.id, operator: .greater, to: 0)
         perons.subscribe(on:  DispatchQueue(label: "AASASAS")) { (chane) in
             print("KJKKKKKKKKKK:", chane)
         }.disposed(by: self.bag)

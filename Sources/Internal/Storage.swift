@@ -27,18 +27,18 @@ internal protocol StorageProtocol {
     
     func filter<Value: Equatable, T: Model, E: Any>(
         by keyPath: KeyPath<T, Value>,
-        equal compareValue: E) -> List<T>
+        equal compareValue: E) -> Pool<T>
     
     func filter<Value: Equatable, T: Model, E: Any>(
         by keyPath: KeyPath<T, Value>,
         operator basicOperator: Operator,
-        to compareValue: E) -> List<T>
+        to compareValue: E) -> Pool<T>
     
     func filter<Value: Equatable, T: Model>(
         by keyPath: KeyPath<T, Value>,
-        in strings: [String]) -> List<T>
+        in strings: [String]) -> Pool<T>
     
-    func filter<T: Model>(query string: String) -> List<T>
+    func filter<T: Model>(query string: String) -> Pool<T>
 }
 
 internal class Storage: StorageProtocol {

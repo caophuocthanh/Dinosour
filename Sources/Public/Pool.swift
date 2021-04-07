@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Realm
 
-public class List<T: Model> {
+public class Pool<T: Model> {
     
     public enum ListChange<T> {
         case initial
