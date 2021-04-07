@@ -32,7 +32,7 @@ public class List<T: Model> {
         return result.first
     }
     
-    public func observe(on queue: DispatchQueue? = nil, block: @escaping (ListChange<T>) -> Void) -> Model.NotificationToken {
+    public func subscribe(on queue: DispatchQueue? = nil, block: @escaping (ListChange<T>) -> Void) -> Model.NotificationToken {
         return self.result.observe(on: queue) { change in
             switch change {
             case .initial( _):

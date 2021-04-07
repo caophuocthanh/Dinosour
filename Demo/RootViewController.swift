@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Storage
 
 class RootViewController: UIViewController {
 
@@ -25,20 +26,39 @@ class RootViewController: UIViewController {
         button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         button.addTarget(self, action: #selector(tap), for: .touchUpInside)
+        
+        DispatchQueue(label: "E1").async {
+            Person.find(id: 10)?.subscribe(on: DispatchQueue.main) { (_, change: Model.ModelChange<Person>) in
+                switch change {
+                case .initial(let person):
+                    print("notify initial:", Thread.current.name ?? "unknow", person.name)
+                case .update(let person, let properties):
+                    print("notify update:", Thread.current.name ?? "unknow", person.name, properties)
+                case .delete:
+                    print("notify delete:", Thread.current.name ?? "unknow")
+                case .error(let error):
+                    print("error", error)
+                }
+            }?.disposed(by: self.bag)
+        }
+        
     }
+    
+    var bag: NotificationTokenBag = NotificationTokenBag()
     
     @objc func tap() {
 
         DispatchQueue(label: "E3").asyncAfter(deadline: .now()) {
             print("write")
             
-            let create: Person = Person(id: 10, name: "person")
-            
-            for i in 0...10 {
-                //sleep(1)
-                try? create.write {
-                    print("write")
-                    create.this?.name = "person🦴 \(i)"
+            if let create: Person = Person.find(id: 10) {
+                
+                for i in 0...10 {
+                    //sleep(1)
+                    try? create.write {
+                        print("write")
+                        create.this?.name = "person🦴"
+                    }
                 }
             }
         }

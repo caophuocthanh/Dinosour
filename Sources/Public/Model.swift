@@ -45,7 +45,7 @@ public extension Model {
     }
 }
 
-open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
+@objc open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
     
     @objc dynamic public var id: Int = 0
     @objc dynamic public var _created_at: Double = Date().timeIntervalSince1970
@@ -108,7 +108,7 @@ open class Model: RealmSwift.Object, ObjectKeyIdentifiable {
         return database.find(id: self._uid) != nil
     }
 
-    public func observe<T: Model>(on queue: DispatchQueue? = nil,_ calback: @escaping Model.ObservableCalback<T>)-> NotificationToken? {
+    public func subscribe<T: Model>(on queue: DispatchQueue? = nil,_ calback: @escaping Model.ObservableCalback<T>)-> NotificationToken? {
         guard let model: T = database.find(id: self._uid) else { return nil }
         return model.observe(on: queue) { (change: ObjectChange<T>) in
             switch change {

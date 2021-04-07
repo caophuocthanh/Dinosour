@@ -54,19 +54,23 @@ class ViewController: UIViewController {
         // new an object Person at main thread
         
         let perons: List<Person> = Person.filter(by: \.id, operator: .greater, to: 0)
-        perons.observe(on:  DispatchQueue(label: "AASASAS")) { (chane) in
+        perons.subscribe(on:  DispatchQueue(label: "AASASAS")) { (chane) in
             print("KJKKKKKKKKKK:", chane)
         }.disposed(by: self.bag)
         
 
       let create: Person = Person(id: 10, name: "person")
         
+        
+        
+        print("JHSAGFKHJSF:", create.dictionary)
+        
         try! create.insert()
         
         // listen change at other thread E1
         DispatchQueue(label: "E1").asyncAfter(deadline: .now() + 1) {
             print("observe")
-            create.observe(on: DispatchQueue.main) { (_, change: Model.ModelChange<Person>) in
+            create.subscribe(on: DispatchQueue.main) { (_, change: Model.ModelChange<Person>) in
                 switch change {
                 case .initial(let person):
                     print("notify initial:", Thread.current.name ?? "unknow", person.name)
