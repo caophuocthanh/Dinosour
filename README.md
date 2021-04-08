@@ -2,7 +2,16 @@
 <div class="text-red mb-2">(In Developing... It's not ready for use)</div>
 
 
+### TODO:
 
+- [x] Stored Object with Realm by mutithread
+- [x] Custom listen on change of list and an object 
+- [x] Hidden Realm Framework
+- [ ] Custom Lis<Element> of Realm to make an object refercence to many objects
+- [ ] Decode & Encode Mapping Object easy
+- [ ] Add Alarmofire and make request and store object easier
+
+==> Try hard to rewirte my old source code: https://github.com/caophuocthanh/RealmSwift-Alamofire
 
 ### Network and Database in ONE
 
