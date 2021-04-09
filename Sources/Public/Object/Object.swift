@@ -51,5 +51,9 @@ import Realm
     public func isExisted() -> Bool {
         return database.find(id: self._uid) != nil
     }
+    
+    func className() -> String {
+        return String(describing: type(of: self))
+    }
 
 }

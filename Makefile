@@ -38,6 +38,7 @@ setup:
 	rm -rf Carthage/Build/iOS/*bcsymbolmap;
 
 	#copy libary to Frameworks
+	mkdir Frameworks;
 	cp -rf Carthage/Build/iOS/* ${FRAMEWORK_DESTINATION}/;
 	
 	#clean Carthage
