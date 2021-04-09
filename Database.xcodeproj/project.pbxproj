@@ -35,6 +35,7 @@
 		7375C704260A34DE006F99DF /* Many.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7375C703260A34DE006F99DF /* Many.swift */; };
 		7375C70E260A5CC0006F99DF /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7375C70D260A5CC0006F99DF /* Operator.swift */; };
 		737BD5C5261D46FB0015CDE7 /* Model+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737BD5C4261D46FB0015CDE7 /* Model+Parser.swift */; };
+		73993F9626209EB100F7D1FD /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73993F9526209EB100F7D1FD /* NSObject+Extensions.swift */; };
 		73EB42662602E970003583DE /* Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EB42652602E970003583DE /* Save.swift */; };
 		73EB426C2602E9AB003583DE /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EB426B2602E9AB003583DE /* Delete.swift */; };
 		73EB42722602EA11003583DE /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EB42712602EA11003583DE /* Query.swift */; };
@@ -121,6 +122,7 @@
 		7375C703260A34DE006F99DF /* Many.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Many.swift; sourceTree = "<group>"; };
 		7375C70D260A5CC0006F99DF /* Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
 		737BD5C4261D46FB0015CDE7 /* Model+Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+Parser.swift"; sourceTree = "<group>"; };
+		73993F9526209EB100F7D1FD /* NSObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
 		73EB42652602E970003583DE /* Save.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Save.swift; sourceTree = "<group>"; };
 		73EB426B2602E9AB003583DE /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		73EB42712602EA11003583DE /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
@@ -290,6 +292,14 @@
 			path = DemoUITests;
 			sourceTree = "<group>";
 		};
+		73993F9426209E8500F7D1FD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				73993F9526209EB100F7D1FD /* NSObject+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		73F89099260B077F0086254D /* Internal */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +317,7 @@
 		73F8909A260B078B0086254D /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				73993F9426209E8500F7D1FD /* Extensions */,
 				7311DA2E262007D8008118B3 /* Operators */,
 				7311DA2D262007CE008118B3 /* Many */,
 				7311DA2C262007C6008118B3 /* Object */,
@@ -535,6 +546,7 @@
 				7311DA30262007FD008118B3 /* Many+Subcriber.swift in Sources */,
 				7311DA3626200883008118B3 /* Object+Subcriber.swift in Sources */,
 				732036592609C392004F5CB5 /* Atomic.swift in Sources */,
+				73993F9626209EB100F7D1FD /* NSObject+Extensions.swift in Sources */,
 				7375C70E260A5CC0006F99DF /* Operator.swift in Sources */,
 				7311DA3C2620095E008118B3 /* Object+Stored.swift in Sources */,
 				7336351624FD5DDA002C84DA /* Storage.swift in Sources */,

@@ -22,7 +22,7 @@ public extension Object {
         case error(Error)
     }
     
-    public func subscribe<T: Object>(on queue: DispatchQueue? = nil,_ calback: @escaping Object.ObservableCalback<T>)-> Subscriber? {
+    func subscribe<T: Object>(on queue: DispatchQueue? = nil,_ calback: @escaping Object.ObservableCalback<T>)-> Subscriber? {
         guard let model: T = database.find(id: self._uid) else { return nil }
         let token = model.observe(on: queue) { (change: RealmSwift.ObjectChange<T>) in
             switch change {

@@ -11,7 +11,7 @@ public class Supervisor {
     public init() {}
     
     deinit {
-        print("NotificationTokenBag deinit")
+        print(self,"deinit")
     }
     
     internal var tokens: [Subscriber] = [] {

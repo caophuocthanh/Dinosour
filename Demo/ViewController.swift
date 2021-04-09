@@ -63,7 +63,7 @@ class ViewController: UIViewController {
         
         
         let asdasd = create.dictionary(forKeys: "id", "name")
-        print("JHSAGFKHJSF:", asdasd)
+        print("JHSAGFKHJSF:", create.className , asdasd)
         
         try! create.insert()
         
