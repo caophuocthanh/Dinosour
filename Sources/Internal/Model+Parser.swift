@@ -8,29 +8,59 @@
 
 import Foundation
 
-public extension Model {
+public extension NSObject  {
+    
+    func dictionary(forKeys keys: String...) -> [String : Any] {
+        return self.dictionary(forKeys: keys)
+    }
+
+    func dictionary(forKeys keys: [String]) -> [String : Any] {
+        var dictionary: [String: Any] = [:]
+        let mirrored_object = Mirror(reflecting: self)
+        
+        for element in mirrored_object.children {
+            if let label = element.label, keys.contains(label) {
+                dictionary[label] = element.value
+            }
+        }
+        
+        if let superclassMirror = mirrored_object.superclassMirror {
+            for element in superclassMirror.children {
+                if let label = element.label, keys.contains(label) {
+                    dictionary[label] = element.value
+                }
+            }
+        }
+        return dictionary
+    }
     
     var dictionary: [String: Any] {
+        
         var json: [String: Any] = [:]
         let mirrored_object = Mirror(reflecting: self)
+        
         for element in mirrored_object.children {
             if let label = element.label {
                 json[label] = element.value
             }
         }
-        for element in mirrored_object.superclassMirror!.children {
-            if let label = element.label {
-                json[label] = element.value
+        
+        if let superclassMirror = mirrored_object.superclassMirror {
+            for element in superclassMirror.children {
+                if let label = element.label {
+                    json[label] = element.value
+                }
             }
         }
-        return json.removeKeys(["_thread", "_updated_at", "_uid", "_created_at"])
+        
+        return json.ignoreKeys(["_thread", "_updated_at", "_uid", "_created_at"])
     }
     
 }
 
 private extension Dictionary {
     
-    func removeKeys(_ keys: [String]) -> Dictionary {
+    func ignoreKeys(_ keys: [String]) -> Dictionary {
         let mainDict = NSMutableDictionary.init(dictionary: self)
         for _dict in mainDict {
             if let key = _dict.key as? String, keys.contains(key) {
@@ -40,7 +70,7 @@ private extension Dictionary {
         return mainDict as! Dictionary<Key, Value>
     }
     
-    func removeNull() -> Dictionary {
+    func ignoreNull() -> Dictionary {
         let mainDict = NSMutableDictionary.init(dictionary: self)
         for _dict in mainDict {
             if _dict.value is NSNull {
@@ -68,11 +98,18 @@ private extension Dictionary {
                 mainDict.removeObject(forKey: key)
                 mainDict.setValue(mutableArray, forKey: key)
             }
-            else if let key =  _dict.key as? String, let value = _dict.value as? Model {
+            else if let key =  _dict.key as? String, let value = _dict.value as? NSObject {
                 mainDict.setValue(value.dictionary, forKey: key)
             }
         }
         return mainDict as! Dictionary<Key, Value>
+    }
+}
+
+
+fileprivate extension KeyPath where Root: NSObject {
+    var stringValue: String {
+        NSExpression(forKeyPath: self).keyPath
     }
 }
 

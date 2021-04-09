@@ -9,7 +9,7 @@
 import UIKit
 import Storage
 
-class Person: Model {
+class Person: Object {
     
     @objc dynamic var name: String = ""
     
@@ -25,7 +25,7 @@ class Person: Model {
 
 class ViewController: UIViewController {
     
-    let button: UIButton = {
+    let backbutton: UIButton = {
         let button: UIButton = UIButton()
         button.setTitle("BACK", for: .normal)
         return button
@@ -34,43 +34,43 @@ class ViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.view.backgroundColor = .red
-        self.view.addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        button.addTarget(self, action: #selector(tap), for: .touchUpInside)
+        self.view.addSubview(backbutton)
+        backbutton.translatesAutoresizingMaskIntoConstraints = false
+        backbutton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        backbutton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        backbutton.addTarget(self, action: #selector(taptaptap), for: .touchUpInside)
     }
     
-    @objc func tap() {
+    @objc func taptaptap() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    var bag: NotificationTokenBag = NotificationTokenBag()
+    var supervisor: Supervisor = Supervisor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+
         // new an object Person at main thread
         
-        let perons: Pool<Person> = Person.filter(by: \.id, operator: .greater, to: 0)
+        let perons: Many<Person> = Person.filter(by: \.id, operator: .greater, to: 0)
         perons.subscribe(on:  DispatchQueue(label: "AASASAS")) { (chane) in
             print("KJKKKKKKKKKK:", chane)
-        }.disposed(by: self.bag)
+        }.depends(on: self.supervisor)
         
 
       let create: Person = Person(id: 10, name: "person")
         
         
-        
-        print("JHSAGFKHJSF:", create.dictionary)
+        let asdasd = create.dictionary(forKeys: "id", "name")
+        print("JHSAGFKHJSF:", asdasd)
         
         try! create.insert()
         
         // listen change at other thread E1
         DispatchQueue(label: "E1").asyncAfter(deadline: .now() + 1) {
             print("observe")
-            create.subscribe(on: DispatchQueue.main) { (_, change: Model.ModelChange<Person>) in
+            create.subscribe(on: DispatchQueue.main) { (_, change: Object.ObjectChange<Person>) in
                 switch change {
                 case .initial(let person):
                     print("notify initial:", Thread.current.name ?? "unknow", person.name)
@@ -81,7 +81,7 @@ class ViewController: UIViewController {
                 case .error(let error):
                     print("error", error)
                 }
-            }?.disposed(by: self.bag)
+            }?.depends(on: self.supervisor)
         }
         
         // read object at other thread E12222. use this to access safe properties

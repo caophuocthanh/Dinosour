@@ -17,28 +17,28 @@ internal protocol StorageProtocol {
     init(name: String)
     
     // MARK: Methods
-    func insert<T: Model>(type: T.Type, value: Model, update: Storage.SetType) throws
-    func delete(_ model: Model) throws
+    func insert<T: Object>(type: T.Type, value: Object, update: Storage.SetType) throws
+    func delete(_ model: Object) throws
     
     func write(block: @escaping (() throws -> Void)) throws
     
-    func find<T: Model>(id: Int) -> T?
-    func find<T: Model>() -> [T]
+    func find<T: Object>(id: Int) -> T?
+    func find<T: Object>() -> [T]
     
-    func filter<Value: Equatable, T: Model, E: Any>(
+    func filter<Value: Equatable, T: Object, E: Any>(
         by keyPath: KeyPath<T, Value>,
-        equal compareValue: E) -> Pool<T>
+        equal compareValue: E) -> Many<T>
     
-    func filter<Value: Equatable, T: Model, E: Any>(
+    func filter<Value: Equatable, T: Object, E: Any>(
         by keyPath: KeyPath<T, Value>,
         operator basicOperator: Operator,
-        to compareValue: E) -> Pool<T>
+        to compareValue: E) -> Many<T>
     
-    func filter<Value: Equatable, T: Model>(
+    func filter<Value: Equatable, T: Object>(
         by keyPath: KeyPath<T, Value>,
-        in strings: [String]) -> Pool<T>
+        in strings: [String]) -> Many<T>
     
-    func filter<T: Model>(query string: String) -> Pool<T>
+    func filter<T: Object>(query string: String) -> Many<T>
 }
 
 internal class Storage: StorageProtocol {
@@ -62,7 +62,7 @@ internal class Storage: StorageProtocol {
         
     }
 
-    internal typealias Element = Model
+    internal typealias Element = Object
 
     internal static var `default`: Storage {
         return StorageProvider.shared.store

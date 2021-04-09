@@ -12,7 +12,7 @@ import Realm
 
 internal extension Storage {
     
-    func insert<T>(type: T.Type, value: Model, update: SetType = .modified) throws where T : Model {
+    func insert<T>(type: T.Type, value: Object, update: SetType = .modified) throws where T : Object {
         self.realm.beginWrite()
         switch update {
         case .all:

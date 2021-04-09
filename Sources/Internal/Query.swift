@@ -22,7 +22,7 @@ internal extension Storage {
     
     func filter<Value: Equatable, T: Element, E: Any>(
         by keyPath: KeyPath<T, Value>,
-        equal compareValue: E) -> Pool<T> {
+        equal compareValue: E) -> Many<T> {
         let query = "\(keyPath.stringValue) == \(compareValue)"
         return self.filter(query: query)
     }
@@ -30,28 +30,28 @@ internal extension Storage {
     func filter<Value: Equatable, T: Element, E: Any>(
         by keyPath: KeyPath<T, Value>,
         operator basicOperator: Operator,
-        to compareValue: E) -> Pool<T> {
+        to compareValue: E) -> Many<T> {
         let query = "\(keyPath.stringValue) \(basicOperator.string) \(compareValue)"
         return self.filter(query: query)
     }
     
     func filter<Value: Equatable, T: Element>(
         by keyPath: KeyPath<T, Value>,
-        in strings: [String]) -> Pool<T> {
+        in strings: [String]) -> Many<T> {
         let string = "{\(strings.map { "'\($0)'"}.joined(separator: ","))}"
         let query = "%\(keyPath.stringValue) IN \(string)"
         return self.filter(query: query)
     }
     
-    func filter<T: Element>(query string: String) -> Pool<T> {
+    func filter<T: Element>(query string: String) -> Many<T> {
         print("[",T.self,"]","- query: \"\(string)\"")
         let result: Results<T> = self.realm.objects(T.self).filter(string)
-        return Pool<T>(result)
+        return Many<T>(result)
     }
 
 }
 
-extension KeyPath where Root: NSObject {
+fileprivate extension KeyPath where Root: NSObject {
     var stringValue: String {
         NSExpression(forKeyPath: self).keyPath
     }

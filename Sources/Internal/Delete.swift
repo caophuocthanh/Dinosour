@@ -10,7 +10,7 @@ import Foundation
 
 internal extension Storage {
 
-    func delete<T: Model>(_ model: T) throws {
+    func delete<T: Object>(_ model: T) throws {
         try self.realm.write {
             self.realm.delete(model)
         }

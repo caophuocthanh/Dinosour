@@ -27,24 +27,24 @@ class RootViewController: UIViewController {
         button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         button.addTarget(self, action: #selector(tap), for: .touchUpInside)
         
-        DispatchQueue(label: "E1").async {
-            Person.find(id: 10)?.subscribe(on: DispatchQueue.main) { (_, change: Model.ModelChange<Person>) in
-                switch change {
-                case .initial(let person):
-                    print("notify initial:", Thread.current.name ?? "unknow", person.name)
-                case .update(let person, let properties):
-                    print("notify update:", Thread.current.name ?? "unknow", person.name, properties)
-                case .delete:
-                    print("notify delete:", Thread.current.name ?? "unknow")
-                case .error(let error):
-                    print("error", error)
-                }
-            }?.disposed(by: self.bag)
-        }
+//        DispatchQueue(label: "E1").async {
+//            Person.find(id: 10)?.subscribe(on: DispatchQueue.main) { (_, change: Model.ObjectChange<Person>) in
+//                switch change {
+//                case .initial(let person):
+//                    print("notify initial:", Thread.current.name ?? "unknow", person.name)
+//                case .update(let person, let properties):
+//                    print("notify update:", Thread.current.name ?? "unknow", person.name, properties)
+//                case .delete:
+//                    print("notify delete:", Thread.current.name ?? "unknow")
+//                case .error(let error):
+//                    print("error", error)
+//                }
+//            }?.disposed(by: self.bag)
+//        }
         
     }
     
-    var bag: NotificationTokenBag = NotificationTokenBag()
+    var bag: Supervisor = Supervisor()
     
     @objc func tap() {
 
